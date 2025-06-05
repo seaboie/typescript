@@ -1,6 +1,5 @@
 <a id="readme-top"></a>
 
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -13,14 +12,12 @@
   <p align="center">
     Typescript
     <br />
-    <a href="https://www.youtube.com/watch?v=PEBKm8gXe5Y"><strong>On Youtube »</strong></a>
+    <a href="https://www.youtube.com/watch?v=EcCTIExsqmI&t=607s"><strong>On Youtube »</strong></a>
     <br />
     
   </p>
 
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -32,44 +29,48 @@
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#create-packagejson-file">Create `package.json` file</a></li>
         <li><a href="#install-tsx-with-yarn">Install `tsx`</a></li>
-        <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li>
+      <a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+
+      </ul>
+    </li>
     <li><a href="#license">License</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
-
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
+### Prerequisites
 
-### Prerequisites  
+\*\*Configure at `tsconfig.json`
 
-**Configure at `tsconfig.json`
-
-> tsconfig.json  
+> tsconfig.json
 
 ```json
 "compilerOptions": {
   "target": "es2017",
   "moduleDetection": "force"
 }
-```  
+```
 
-- `"moduleDetection": "force"` prevent error when declare same name variable in another files  
+- `"moduleDetection": "force"` prevent error when declare same name variable in another files
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Create `package.json` file  
+### Create `package.json` file
 
 ```bash
 yarn init -y
-```  
+```
 
-### Install `tsx` with `yarn`  
+### Install `tsx` with `yarn`
 
 To install **`tsx`** as a **local development dependency** using Yarn, run:
 
@@ -78,23 +79,30 @@ yarn add -D tsx
 ```
 
 ### **What This Does:**
-- `add` → Installs the package  
-- `-D` → Saves it under `devDependencies` in `package.json` (for development tools)  
-- `tsx` → The TypeScript execution runtime  
+
+- `add` → Installs the package
+- `-D` → Saves it under `devDependencies` in `package.json` (for development tools)
+- `tsx` → The TypeScript execution runtime
 
 ### **Why `-D` (--dev)?**
-- `tsx` is a **development tool** (like `ts-node` or `vite`), not needed in production.  
-- Keeps your production dependencies lean.  
+
+- `tsx` is a **development tool** (like `ts-node` or `vite`), not needed in production.
+- Keeps your production dependencies lean.
 
 ### **After Installation:**
-Run your TypeScript file in watch mode with:  
+
+Run your TypeScript file in watch mode with:
+
 ```bash
 yarn tsx watch src/index.ts
 ```
-*(No `npx` needed—Yarn automatically resolves local binaries!)*  
 
-### **Bonus: Add a Script**  
-In `package.json`:  
+_(No `npx` needed—Yarn automatically resolves local binaries!)_
+
+### **Bonus: Add a Script**
+
+In `package.json`:
+
 ```json
 {
   "scripts": {
@@ -102,61 +110,102 @@ In `package.json`:
   }
 }
 ```
-Then just run:  
+
+Then just run:
+
 ```bash
 yarn dev
 ```
 
 ### **Key Notes:**
-- **Global install?** Not recommended (use `-D` for project-specific versions).  
-- **Already installed?** Yarn will upgrade/downgrade to match the version in `package.json`.  
 
-Yarn’s workflow is cleaner than npm’s for local tools—no `npx` needed! 🚀  
+- **Global install?** Not recommended (use `-D` for project-specific versions).
+- **Already installed?** Yarn will upgrade/downgrade to match the version in `package.json`.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
----  
-
-
-### Installation
-
-
+Yarn’s workflow is cleaner than npm’s for local tools—no `npx` needed! 🚀
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+---
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
-## Usage
 
+## Usage  
 
+### Generic Type  
+
+```ts
+// ---------------------------------------- Generic Type
+type ApiResponse<T extends object = {status: number}> = {  // Set extends to be object : Set default type <T = {status: number}>
+    data: T,
+    isError: boolean
+}
+
+// ---------------------------------------- Sub Type
+type User = {
+    name: string,
+    age: number
+}
+
+type Blog = {
+    title: string
+}
+
+type Status = {
+    status: number
+}
+
+// ---------------------------------------- Usage Type 
+
+type UserResponse = ApiResponse<User>;
+type BlogResponse = ApiResponse<Blog>;
+type StatusResponse = ApiResponse;  // *** use default type 
+
+// ---------------------------------------- Usaging
+const userResponse: UserResponse = {
+    data: {
+        name: "Kyle",
+        age: 32
+    },
+    isError: false
+}
+
+const blogResponse: BlogResponse = {
+    data: {  
+        title: "Hello"
+    },
+    isError: false
+} 
+
+const statusResponse: StatusResponse = {
+    data: { 
+        status: 200, 
+    },
+    isError: false
+}
+```  
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments  
 
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
+## Acknowledgments
 
-
+- [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[logo-image]:https://raw.githubusercontent.com/seaboie/images/main/images/logoTransparent.png
 
+[logo-image]: https://raw.githubusercontent.com/seaboie/images/main/images/logoTransparent.png

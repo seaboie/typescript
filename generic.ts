@@ -14,6 +14,8 @@ console.log(firstString);
 
 console.log(`--------------------------------------------`);
 
+// ------------------------------------------------------- Nested
+
 const nestMap = new Map<string, Map<string, number>>();
 
 const innerMap = new Map<string, number>();

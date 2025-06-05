@@ -1,6 +1,5 @@
 // ---------------------------------------- Generic Type
-
-type ApiResponse<T extends object = {status: number}> = {  // Set default type <T = {status: number}> : Set extends to be object
+type ApiResponse<T extends object = {status: number}> = {  //   Set extends to be object : Set default type <T = {status: number}>
     data: T,
     isError: boolean
 }
@@ -19,13 +18,11 @@ type Status = {
     status: number
 }
 
-
 // ---------------------------------------- Usage Type 
 
 type UserResponse = ApiResponse<User>;
 type BlogResponse = ApiResponse<Blog>;
 type StatusResponse = ApiResponse;
-
 
 // ---------------------------------------- Usage
 const userResponse: UserResponse = {
